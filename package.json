@@ -1,0 +1,12 @@
+{
+  "name": "twitter-unfollow-non-followers",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@twitter-api-v2/plugin-rate-limit": "^1.1.0",
+    "dotenv": "^16.0.1",
+    "twitter-api-v2": "^1.12.3"
+  }
+}
