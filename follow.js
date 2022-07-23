@@ -44,14 +44,16 @@ const start = async () => {
     const likeCount = tweet['public_metrics']['like_count']
     if (likeCount >= 0 && likeCount <= 15) {
       if (!auhtorIDs.includes(tweet['author_id'])) {
-        if(followings.includes(tweet['author_id'])){
+        if(!followings.includes(tweet['author_id'])){
           console.log(`following ${tweet['author_id']}`);
           await userClient.v2.follow(userID, tweet['author_id']);
           auhtorIDs.push(tweet['author_id'])
           await sleep(15000)
         }else{
-          console.log(`already following ${tweet['author_id']}`);
+          console.log(`1-already following ${tweet['author_id']}`);
         }
+      }else{
+        console.log(`2-already following ${tweet['author_id']}`);
       }
       await sleep(2000)
     }
