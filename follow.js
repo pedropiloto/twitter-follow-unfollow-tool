@@ -34,7 +34,7 @@ const start = async () => {
 
  await sleep(10000)
 
-  const jsTweets = await userClient.v2.search('#CNFTCommunity', { 'media.fields': 'url', 'tweet.fields': ['public_metrics', 'author_id', 'referenced_tweets'] });
+  const jsTweets = await userClient.v2.search('@the_ape_society', { 'media.fields': 'url', 'tweet.fields': ['public_metrics', 'author_id', 'referenced_tweets'] });
 
   // Consume every possible tweet of jsTweets (until rate limit is hit)
   const auhtorIDs = []
@@ -69,7 +69,7 @@ const start = async () => {
     }
   }catch(e){
     console.log(`ERROR on interating tweets - ${e}`)
-    await sleep(15000)
+    await sleep(900000)
   }
   }
 
