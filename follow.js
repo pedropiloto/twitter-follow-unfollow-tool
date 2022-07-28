@@ -13,6 +13,11 @@ const start = async () => {
 
   const userID =process.env.TWITTER_USER_ID
 
+  const args = process.argv.slice(2);
+
+  const search = args[0]
+  const maxFollow = Number(args[1])
+
  const followingsAsPaginator = await userClient.v2.following(userID, { asPaginator: true });
  const followings  = []
  for await (const following of followingsAsPaginator) {
@@ -34,7 +39,7 @@ const start = async () => {
 
  await sleep(10000)
 
-  const jsTweets = await userClient.v2.search('@the_ape_society', { 'media.fields': 'url', 'tweet.fields': ['public_metrics', 'author_id', 'referenced_tweets'] });
+  const jsTweets = await userClient.v2.search(search, { 'media.fields': 'url', 'tweet.fields': ['public_metrics', 'author_id', 'referenced_tweets'] });
 
   // Consume every possible tweet of jsTweets (until rate limit is hit)
   const auhtorIDs = []
@@ -64,7 +69,7 @@ const start = async () => {
       await sleep(2000)
     }
     await sleep(2000)
-    if (auhtorIDs.length === 200) {
+    if (auhtorIDs.length === maxFollow) {
       break
     }
   }catch(e){
