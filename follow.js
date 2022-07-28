@@ -53,7 +53,7 @@ const start = async () => {
           console.log(`following ${tweet['author_id']}`);
           await userClient.v2.follow(userID, tweet['author_id']);
           auhtorIDs.push(tweet['author_id'])
-          await sleep(15000)
+          await sleep(180000)
         }else{
           console.log(`1-already following ${tweet['author_id']}`);
         }
