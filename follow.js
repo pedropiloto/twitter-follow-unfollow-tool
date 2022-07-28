@@ -66,7 +66,7 @@ const start = async () => {
     if (shouldLike === 1) {
       console.log(`liking ${tweet['id']}`);
       await userClient.v2.like(userID, tweet['id']);
-      await sleep(2000)
+      await sleep(30000)
     }
     await sleep(2000)
     if (auhtorIDs.length === maxFollow) {
