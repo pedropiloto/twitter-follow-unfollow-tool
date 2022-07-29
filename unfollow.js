@@ -36,11 +36,13 @@ const actorID = process.env.TWITTER_USER_ID
  for (const userID of nonFollowers) {
   try{
     await userClient.v2.unfollow(actorID, userID);
+    console.log(`unfollowing ${userID}`);
+
   }catch(e){
     console.log(`ERROR when unfollowing: ${e}`)
     await(sleep(900000))
   }
-  await(sleep(15000))
+  await(sleep(180000))
  }
 }
 
