@@ -2,13 +2,11 @@ require("dotenv").config();
 const { TwitterApi } = require('twitter-api-v2')
 
 const start = async () => {
-  // Instantiate with desired auth type (here's Bearer v2 auth)
-
   const userClient = new TwitterApi({
-    appKey: process.env.TWIITER_API_KEY,
-    appSecret: process.env.TWIITER_API_SECRET,
-    accessToken: process.env.TWIITER_ACCESS_TOKEN, // oauth token from previous step (link generation)
-    accessSecret: process.env.TWIITER_ACCESS_SECRET, // oauth token secret from previous step (link generation)
+    appKey: process.env.TWITTER_API_KEY,
+    appSecret: process.env.TWITTER_API_SECRET,
+    accessToken: process.env.TWITTER_ACCESS_TOKEN,
+    accessSecret: process.env.TWITTER_ACCESS_SECRET,
   });
 
   const userID =process.env.TWITTER_USER_ID
@@ -21,18 +19,13 @@ const start = async () => {
  const followingsAsPaginator = await userClient.v2.following(userID, { asPaginator: true });
  const followings  = []
  for await (const following of followingsAsPaginator) {
-  // Iterate until rate limit is hit
-  // or API calls returns no more results
   followings.push(following['id'])
  }
  console.log(`followings: ${followings.length}`)
 
-
  const followersAsPaginator = await userClient.v2.followers(userID, { asPaginator: true });
  const followers  = []
  for await (const follower of followersAsPaginator) {
-  // Iterate until rate limit is hit
-  // or API calls returns no more results
   followers.push(follower['id'])
 }
  console.log(`followers: ${followers.length}`)
@@ -88,6 +81,5 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 const getRandomInt = (max) => {
   return Math.floor(Math.random() * max);
 }
-
 
 start()
